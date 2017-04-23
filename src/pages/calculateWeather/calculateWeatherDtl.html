@@ -1,0 +1,67 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+        <ion-title>{{ 'CW.DETAIL' | translate }}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content>
+    <ion-grid>
+        <ion-row>
+            <ion-col col-12>
+                <div class="mainComponent centerAndMiddle paddingTo10">
+                    <p class="fontLarge colorToWarning"><strong>{{'WF.HKO_PROVIDED' | translate}}</strong></p>
+                    <label *ngIf="IGV.gLangInd === 'en'" class="centerAndMiddle fontLarge paddingBottomTo7">
+                                    {{selectedDay}} {{monthMap[selectedMonth]}} </label>
+                    <label *ngIf="IGV.gLangInd === 'zh'" class="centerAndMiddle fontLarge paddingBottomTo7">
+                                    {{selectedMonth}} {{'CW.MONTH' | translate}} {{selectedDay}} {{'CW.DAY' | translate}}</label>
+                    <label class="fontMiddle paddingBottomTo7">
+                                    {{'CW.RECENT' | translate}} {{selectedFilterYear}} {{'CW.YEARS_OF_DATA' | translate}}</label>
+                    <ion-grid>
+                        <ion-row>
+                            <ion-col col-4>
+                                <div class="centerAndMiddle">
+                                    <p class="fontLarge"><strong>{{ 'CW.YEAR' | translate }}</strong></p>
+                                </div>
+                            </ion-col>
+                            <ion-col col-4>
+                                <div class="centerAndMiddle">
+                                    <p class="fontLarge"><strong>{{ 'CW.RAIN_INTENSITY' | translate }}</strong></p>
+                                </div>
+                            </ion-col>
+                            <ion-col col-4>
+                                <div class="centerAndMiddle">
+                                    <p class="fontLarge"><strong>{{ 'CW.RAINFALL' | translate }} (mm)</strong></p>
+                                </div>
+                            </ion-col>
+                        </ion-row>
+                        <div *ngFor="let weather of weatherDtlList;">
+                            <ion-row>
+                                <ion-col col-4>
+                                    <div class="fontLarge centerAndMiddle">
+                                        <p>{{ weather.year }}</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <div *ngIf="IGV.gLangInd === 'zh'" class="fontLarge centerAndMiddle">
+                                        <p>{{ weather.rainfallDescZH }}</p>
+                                    </div>
+                                    <div *ngIf="IGV.gLangInd === 'en'" class="fontLarge centerAndMiddle">
+                                        <p>{{ weather.rainfallDescEN }}</p>
+                                    </div>
+                                </ion-col>
+                                <ion-col col-4>
+                                    <div class="fontLarge centerAndMiddle">
+                                        <p>{{ weather.rainfall }}</p>
+                                    </div>
+                                </ion-col>
+                            </ion-row>
+                        </div>
+                    </ion-grid>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+</ion-content>

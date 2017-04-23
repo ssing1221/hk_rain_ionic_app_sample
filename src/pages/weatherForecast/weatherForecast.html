@@ -1,0 +1,48 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{'WF.9DAY_WEATHER_FORECAST' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <ion-refresher (ionRefresh)="refreshForecast($event)" pullMax="250">
+    <ion-refresher-content>
+    </ion-refresher-content>
+  </ion-refresher>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-12>
+        <div class="mainComponent">
+          <div class="centerAndMiddle paddingTo10">
+            <div class="form-group">
+              <p class="fontXXLarge"><strong>{{'WF.9DAY_WEATHER_FORECAST' | translate}}</strong></p>
+              <p class="fontLarge colorToWarning"><strong>{{'WF.HKO_PROVIDED' | translate}}</strong></p>
+            </div>
+          </div>
+        </div>
+      </ion-col>
+    </ion-row>
+
+    <div *ngFor="let forecast of forecastList;">
+      <ion-row>
+        <ion-col col-sm-12 col-md-6 col-lg-4>
+          <div class="subComponent">
+            <div class="centerAndMiddle paddingTo10">
+              <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{forecast.day}} {{monthMap[forecast.month]}} ( {{weekDayEnMap[forecast.weekDay]}} ) </strong></p>
+              <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{forecast.month}} {{'WF.MONTH' | translate}} {{forecast.day}} {{'WF.DAY' | translate}} ( {{weekDayZhMap[forecast.weekDay]}} )</strong></p>
+              <p class="fontLarge"><strong>{{forecast.temp}}</strong></p>
+              <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{forecast.desc_en}}</strong></p>
+              <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{forecast.desc_zh}}</strong></p>
+            </div>
+          </div>
+        </ion-col>
+      </ion-row>
+    </div>
+  </ion-grid>
+
+</ion-content>

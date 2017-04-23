@@ -1,0 +1,39 @@
+<ion-menu [content]="content">
+
+  <ion-header>
+    <ion-toolbar>
+      <ion-title class="centerAndMiddle">
+        <img style="height: 45px; width: 50px;" src="assets/img/logo/hkRain_t_3.gif">
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <ion-content class="applyBasicBgColor">
+    <ion-list class="applyBasicBgColor">
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="changeLangInd('zh')">
+        繁
+      </button>
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="changeLangInd('en')">
+        ENG
+      </button>
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="openPage('CalculateWeather')">
+          <ion-icon name="home" item-left></ion-icon> {{ 'MENU.HOME' | translate }}
+      </button>
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="openPage('WeatherForecast')">
+          <ion-icon name="cloud" item-left></ion-icon> {{ 'MENU.9DAY_WEATHER_FORECAST' | translate }}
+      </button>
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="openPage('Setting')">
+          <ion-icon name="settings" item-left></ion-icon> {{ 'MENU.SETTING' | translate }}
+      </button>
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="openPage('About')">
+          <ion-icon name="information-circle" item-left></ion-icon> {{ 'MENU.ABOUT' | translate }}
+      </button>
+      <button class="applyBasicBgColor colorToWhite" ion-item (click)="openPage('RptFeedback')">
+          <ion-icon name="text" item-left></ion-icon> {{ 'MENU.FEEDBACK' | translate }}
+      </button>
+    </ion-list>
+  </ion-content>
+
+</ion-menu>
+
+<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>
