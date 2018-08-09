@@ -12,7 +12,8 @@
     <ion-list>
       <ion-item>
         <ion-label>{{ 'SET.YEARS_OF_DATA_TO_USE' | translate }}</ion-label>
-        <ion-select id="filterYear" name="filterYear" [(ngModel)]="selectedFilterYear" (ngModelChange)="changeFilterYear()">
+        <ion-select id="filterYear" name="filterYear" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+              [(ngModel)]="selectedFilterYear" (ngModelChange)="changeFilterYear()">
           <ion-option *ngFor="let year of selectFilterYearList" value="{{year.value}}">{{year.label}}</ion-option>
         </ion-select>
       </ion-item>

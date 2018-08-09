@@ -8,25 +8,45 @@
 </ion-header>
 
 <ion-content>
+    <ion-row>
+        <ion-col col-12 *ngIf="todayForecast !== null" style="padding-left: 0px; padding-right: 0px;">
+            <div class="mainComponent">
+                <div class="centerAndMiddle paddingTo10">
+                    <div class="form-group">
+                        <p class="fontXLarge"><strong>{{'CW.TODAY_WEATHER' | translate}}</strong></p>
+                        <p class="fontMiddle colorToWarning"><strong>{{'WF.HKO_PROVIDED' | translate}}</strong></p>
+                        <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{todayForecast.day}} {{monthMap[todayForecast.month]}} ( {{weekDayEnMap[todayForecast.weekDay]}} ) </strong></p>
+                        <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{todayForecast.month}} {{'WF.MONTH' | translate}} {{todayForecast.day}} {{'WF.DAY' | translate}} ( {{weekDayZhMap[todayForecast.weekDay]}} )</strong></p>
+                        <p  class="fontLarge"><strong>{{todayForecast.temp}}</strong></p>
+                        <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{todayForecast.desc_en}}</strong></p>
+                        <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{todayForecast.desc_zh}}</strong></p>
+                    </div>
+                </div>
+            </div>
+        </ion-col>
+    </ion-row>
     <form id="calInputForm" *ngIf="!showResult && !showForecast">
         <ion-list>
             <ion-item>
                 <ion-label>{{ 'CW.YEAR' | translate }}</ion-label>
-                <ion-select id="year" name="year" [(ngModel)]="selectedYear" (ngModelChange)="yearChange()">
+                <ion-select id="year" name="year" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                            [(ngModel)]="selectedYear" (ngModelChange)="yearChange()">
                     <ion-option *ngFor="let year of selectYearList" value="{{year.value}}">{{year.label}}</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
                 <ion-label>{{ 'CW.MONTH' | translate }}</ion-label>
-                <ion-select id="month" name="month" [(ngModel)]="selectedMonth" (ngModelChange)="monthChange()">
+                <ion-select id="month" name="month" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                            [(ngModel)]="selectedMonth" (ngModelChange)="monthChange()">
                     <ion-option *ngFor="let month of selectMonthList" value="{{month.value}}">{{month.label}}</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
                 <ion-label>{{ 'CW.DAY' | translate }}</ion-label>
-                <ion-select id="day" name="day" [(ngModel)]="selectedDay" [disabled]="dayDisable">
+                <ion-select id="day" name="day" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                            [(ngModel)]="selectedDay" [disabled]="dayDisable">
                     <ion-option *ngFor="let day of selectDayList" value="{{day.value}}">{{day.label}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -46,12 +66,12 @@
             <ion-row>
                 <ion-col col-12>
                     <div *ngIf="showForecast" class="subComponent">
-                        <div class="centerAndMiddle">
+                        <div class="centerAndMiddle paddingTo5">
                             <div class="form-group">
                                 <p class="fontLarge colorToWarning"><strong>{{'CW.FORECASR_EXPLAIN' | translate}}</strong></p>
                             </div>
                         </div>
-                        <div class="centerAndMiddle paddingTo10">
+                        <div class="centerAndMiddle paddingTo5">
                             <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{forecast.day}} {{monthMap[forecast.month]}} ( {{weekDayEnMap[forecast.weekDay]}} ) </strong></p>
                             <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{forecast.month}} {{'CW.MONTH' | translate}} {{forecast.day}} {{'CW.DAY' | translate}} ( {{weekDayZhMap[forecast.weekDay]}} )</strong></p>
                             <hr style="border-top: 3px solid #eee; margin-top: 0px;" />
@@ -67,7 +87,7 @@
                         </div>
                     </div>
                     <div *ngIf="showResult" class="subComponent">
-                        <div class="centerAndMiddle paddingTo10">
+                        <div class="centerAndMiddle paddingTo5">
                             <label *ngIf="IGV.gLangInd === 'en'" class="centerAndMiddle fontLarge paddingBottomTo7">
                                     {{weatherResult.day}} {{monthMap[weatherResult.month]}} {{weatherResult.year}} ( {{weekDayEnMap[weatherResult.weekDay]}} )</label>
                             <label *ngIf="IGV.gLangInd === 'zh'" class="centerAndMiddle fontLarge paddingBottomTo7">
@@ -151,21 +171,24 @@
         <ion-list>
             <ion-item>
                 <ion-label>{{ 'CW.YEAR' | translate }}</ion-label>
-                <ion-select id="year2" name="year2" [(ngModel)]="selectedYear2" (ngModelChange)="yearChange2()">
+                <ion-select id="year2" name="year2" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                            [(ngModel)]="selectedYear2" (ngModelChange)="yearChange2()">
                     <ion-option *ngFor="let year2 of selectYearList2" value="{{year2.value}}">{{year2.label}}</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
                 <ion-label>{{ 'CW.MONTH' | translate }}</ion-label>
-                <ion-select id="month2" name="month2" [(ngModel)]="selectedMonth2" (ngModelChange)="monthChange2()">
+                <ion-select id="month2" name="month2" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                            [(ngModel)]="selectedMonth2" (ngModelChange)="monthChange2()">
                     <ion-option *ngFor="let month2 of selectMonthList" value="{{month2.value}}">{{month2.label}}</ion-option>
                 </ion-select>
             </ion-item>
 
             <ion-item>
                 <ion-label>{{ 'CW.DAY' | translate }}</ion-label>
-                <ion-select id="day2" name="day2" [(ngModel)]="selectedDay2" [disabled]="dayDisable2">
+                <ion-select id="day2" name="day2" okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                            [(ngModel)]="selectedDay2" [disabled]="dayDisable2">
                     <ion-option *ngFor="let day2 of selectDayList2" value="{{day2.value}}">{{day2.label}}</ion-option>
                 </ion-select>
             </ion-item>
@@ -185,13 +208,13 @@
                 <ion-col col-12>
                     <div *ngIf="showForecast2" class="subComponent">
                         <div *ngIf="showForecast2" class="mainComponent">
-                            <div class="centerAndMiddle">
+                            <div class="centerAndMiddle paddingTo5">
                                 <div class="form-group">
                                     <p class="fontLarge colorToWarning"><strong>{{'CW.FORECASR_EXPLAIN' | translate}}</strong></p>
                                 </div>
                             </div>
                         </div>
-                        <div class="centerAndMiddle paddingTo10">
+                        <div class="centerAndMiddle paddingTo5">
                             <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{forecast2.day}} {{monthMap[forecast2.month]}} ( {{weekDayEnMap[forecast2.weekDay]}} ) </strong></p>
                             <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{forecast2.month}} {{'CW.MONTH' | translate}} {{forecast2.day}} {{'CW.DAY' | translate}} ( {{weekDayZhMap[forecast2.weekDay]}} )</strong></p>
                             <hr style="border-top: 3px solid #eee; margin-top: 0px;" />
@@ -200,9 +223,14 @@
                             <p *ngIf="IGV.gLangInd === 'zh'" class="fontLarge"><strong>{{forecast2.desc_zh}}</strong></p>
 
                         </div>
+                        <div class="centerAndMiddle subComponent">
+                            <button ion-button type="button" full color="secondary" (click)="backToCal2();">
+								{{ 'CW.BACK' | translate }}
+							</button>
+                        </div>
                     </div>
                     <div *ngIf="showResult2" class="subComponent">
-                        <div class="centerAndMiddle paddingTo10">
+                        <div class="centerAndMiddle paddingTo5">
                             <label *ngIf="IGV.gLangInd === 'en'" class="centerAndMiddle fontLarge paddingBottomTo7">
                                     {{weatherResult2.day}} {{monthMap[weatherResult2.month]}} {{weatherResult2.year}} ( {{weekDayEnMap[weatherResult2.weekDay]}} )</label>
                             <label *ngIf="IGV.gLangInd === 'zh'" class="centerAndMiddle fontLarge paddingBottomTo7">

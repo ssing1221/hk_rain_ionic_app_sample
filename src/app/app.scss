@@ -21,6 +21,10 @@ $basicColor: #007ACC;
   background-color: $basicColor;
 }
 
+.applyBasicColor {
+  color: $basicColor;
+}
+
 .centerAndMiddle{
 	text-align: center;
 	vertical-align: middle;
@@ -34,7 +38,7 @@ $basicColor: #007ACC;
   color: white;
 }
 
-.list-md .item-block .item-inner {
+.list-md .item-block .item-inner, .list-ios .item-block .item-inner {
   border-bottom: 0;
 }
 
@@ -201,6 +205,11 @@ a:hover, a:active, a:focus {
 	padding-bottom: 7px;
 }
 
+.paddingTo5{
+	padding:5px;
+}
+
+
 .paddingTo10{
 	padding:10px;
 }
@@ -272,6 +281,10 @@ a:hover, a:active, a:focus {
 
 .noBorder{
 	border: none;
+}
+
+.maxWidth100p{
+	max-width: 100%;
 }
 
 ///////////////////////////////////////

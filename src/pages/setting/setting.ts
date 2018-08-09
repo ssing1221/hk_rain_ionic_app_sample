@@ -36,6 +36,9 @@ export class Setting {
 
 
   changeFilterYear() {
+
+    this.globalFunc.logFirebase('changeFilterYear', 'setting');
+
     this.IGV.filterYear = this.selectedFilterYear;
 
     this.storage.ready().then(() => {

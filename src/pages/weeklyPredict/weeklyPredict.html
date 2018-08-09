@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>{{'MENU.WEEKLY_PREDICT' | translate}}</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <form id="weeklyPredictForm">
+    <ion-list>
+      <div padding-bottom>
+        <ion-item>
+          <ion-label>{{ 'WP.WEEKLY' | translate }}</ion-label>
+          <ion-select id="weeklySelect" name="weeklySelect"  class="maxWidth100p"
+                      okText="{{'MAIN.OK' | translate}}" cancelText="{{'MAIN.CANCEL' | translate}}"
+                      [(ngModel)]="selectedWeek" 
+                      (ngModelChange)="weekChange()">
+            <ion-option *ngFor="let week of weeklySelectList" value="{{week.value}}">{{week.label}}</ion-option>
+          </ion-select>
+        </ion-item>
+        <ion-label center text-center class="applyBasicColor">{{ 'WP.RAIN_PERCENTAGE' | translate }}</ion-label>
+      </div>
+      <canvas baseChart width="300" height="400"
+      [datasets]="lineChartData"
+      [labels]="lineChartLabels"
+      [options]="lineChartOptions"
+      [colors]="lineChartColors"
+      [legend]="lineChartLegend"
+      [chartType]="lineChartType"></canvas>
+    </ion-list>
+  </form>
+</ion-content>

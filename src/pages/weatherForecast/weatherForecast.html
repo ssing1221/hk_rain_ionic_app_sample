@@ -30,7 +30,7 @@
 
     <div *ngFor="let forecast of forecastList;">
       <ion-row>
-        <ion-col col-sm-12 col-md-6 col-lg-4>
+        <ion-col>
           <div class="subComponent">
             <div class="centerAndMiddle paddingTo10">
               <p *ngIf="IGV.gLangInd === 'en'" class="fontLarge"><strong>{{forecast.day}} {{monthMap[forecast.month]}} ( {{weekDayEnMap[forecast.weekDay]}} ) </strong></p>

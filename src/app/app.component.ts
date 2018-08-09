@@ -11,9 +11,11 @@ import { GlobalFunc } from './../globalFunc/globalFunc';
 
 import { WeatherForecast } from '../pages/weatherForecast/weatherForecast';
 import { RptFeedback } from '../pages/rptFeedback/rptFeedback';
+import { SupportPage } from '../pages/support/support';
 import { CalculateWeather } from '../pages/calculateWeather/calculateWeather';
 import { Setting } from '../pages/setting/setting';
 import { About } from '../pages/about/about';
+import { WeeklyPredict } from '../pages/weeklyPredict/weeklyPredict';
 
 
 @Component({
@@ -48,6 +50,8 @@ export class MyApp {
 
       this.translate.use('zh');
       this.IGV.gLangInd = 'zh';
+
+      this.globalFunc.logFirebase('open_app', 'home');
 
       // For local storage
       this.storage.ready().then(() => {
@@ -87,10 +91,16 @@ export class MyApp {
     switch (page) {
       case 'WeatherForecast': {
         toPage = WeatherForecast;
+        this.globalFunc.removeBanner();
         break;
       }
       case 'CalculateWeather': {
         toPage = CalculateWeather;
+        this.globalFunc.showBanner();
+        break;
+      }
+      case 'WeeklyPredict': {
+        toPage = WeeklyPredict;
         break;
       }
       case 'Setting': {
@@ -103,6 +113,10 @@ export class MyApp {
       }
       case 'RptFeedback': {
         toPage = RptFeedback;
+        break;
+      }
+      case 'Support': {
+        toPage = SupportPage;
         break;
       }
       default: {

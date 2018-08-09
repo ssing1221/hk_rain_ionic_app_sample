@@ -6,7 +6,7 @@ import { ResultWeather } from "../../models/ResultWeather";
 import { Forecast } from "../../models/Forecast";
 import { WeatherService } from "../../services/weather.service";
 import { ForecastService } from "../../services/forecast.service";
-import { CalculateWeatherDtl } from "../../pages/calculateWeather/CalculateWeatherDtl";
+import { CalculateWeatherDtl } from "../../pages/calculateWeather/calculateWeatherDtl";
 import { OT_GV, IGV } from './../../globalVar/gv';
 import { GlobalFunc } from './../../globalFunc/globalFunc';
 
@@ -18,6 +18,8 @@ import { GlobalFunc } from './../../globalFunc/globalFunc';
 export class CalculateWeather implements OnInit {
 
     selectedFilterYear: number;
+
+    todayForecast: Forecast = null;
 
     // 1111111 calculate weather 1111111111
     error: any;
@@ -146,6 +148,30 @@ export class CalculateWeather implements OnInit {
         this.init1();
         this.init2();
 
+        this.initForecast();
+    }
+
+    initForecast() {
+        this.globalFunc.loadingPresent();
+        this.forecastService.getForecast()
+          .then(forecastList => {
+            for (var key in forecastList) {
+              if (forecastList.hasOwnProperty(key)) {
+                let currDate: Date = new Date();
+                if (currDate.getDate() === forecastList[0].day) {
+                  currDate.setDate(currDate.getDate() + Number(key));
+                  forecastList[key].weekDay = Number(currDate.getDay());
+                } else {
+                  currDate.setDate(currDate.getDate() + Number(key) + 1);
+                  forecastList[key].weekDay = Number(currDate.getDay());
+                }
+              }
+            }
+            if(forecastList[0] != null){
+              this.todayForecast = forecastList[0];
+            }
+            this.globalFunc.loadingDismiss();
+          }).catch(error => { this.globalFunc.presentSysErr(); this.globalFunc.loadingDismiss(); });
     }
 
     // ------------- Component Change -------------//
@@ -194,15 +220,18 @@ export class CalculateWeather implements OnInit {
     getSelectMonthList(selectYear: number) {
         let monthList = [];
         let currDate = new Date();
-        if (Number(currDate.getFullYear()) !== selectYear) {
-            for (var i = 1; i <= 12; i++) {
-                var month = { value: i, label: i };
+        if (typeof selectYear === 'string') {
+            selectYear = Number(selectYear);
+        }
+        if (currDate.getFullYear() !== selectYear) {
+            for (let i = 1; i <= 12; i++) {
+                let month = { value: i, label: i };
                 monthList.push(month);
             }
         } else {
             let currMonth: number = Number(currDate.getMonth()) + 1;
-            for (var i = currMonth; i <= 12; i++) {
-                var month = { value: i, label: i };
+            for (let i = currMonth; i <= 12; i++) {
+                let month = { value: i, label: i };
                 monthList.push(month);
             }
         }
@@ -215,15 +244,22 @@ export class CalculateWeather implements OnInit {
         let currYear = Number(currDate.getFullYear());
         let currMonth: number = Number(currDate.getMonth()) + 1;
 
+        if (typeof selectYear === 'string') {
+            selectYear = Number(selectYear);
+        }
+        if (typeof selectMonth === 'string') {
+            selectMonth = Number(selectMonth);
+        }
+
         if (currYear === selectYear && currMonth === selectMonth) {
             let currDay: number = Number(currDate.getDate());
-            for (var i = currDay; i <= this.daysInMonth(selectMonth, selectYear); i++) {
-                var day = { value: i, label: i };
+            for (let i = currDay; i <= this.daysInMonth(selectMonth, selectYear); i++) {
+                let day = { value: i, label: i };
                 dayList.push(day);
             }
         } else {
-            for (var i = 1; i <= this.daysInMonth(selectMonth, selectYear); i++) {
-                var day = { value: i, label: i };
+            for (let i = 1; i <= this.daysInMonth(selectMonth, selectYear); i++) {
+                let day = { value: i, label: i };
                 dayList.push(day);
             }
         }
@@ -238,14 +274,17 @@ export class CalculateWeather implements OnInit {
 
 
     calWeather() {
+        this.globalFunc.removeBanner();
         this.globalFunc.loadingPresent();
+
+        this.globalFunc.logFirebase('calWeather', 'home');
 
         //check forecast Date
         let isForecast: boolean = false;
         let inputDate: Date = new Date(Number(this.selectedYear),
             Number(this.selectedMonth) - 1, Number(this.selectedDay));
 
-        for (var i = 0; i < 9; i++) {
+        for (let i = 0; i < 9; i++) {
             let currDate: Date = new Date();
             currDate.setDate(currDate.getDate() + i);
             currDate.setHours(0, 0, 0, 0);
@@ -289,15 +328,17 @@ export class CalculateWeather implements OnInit {
         }
     }
     calWeather2() {
-
+        this.globalFunc.removeBanner();
         this.globalFunc.loadingPresent();
+
+        this.globalFunc.logFirebase('calWeather2', 'home');
 
         //check forecast Date
         let isForecast2: boolean = false;
         let inputDate2: Date = new Date(Number(this.selectedYear2),
             Number(this.selectedMonth2) - 1, Number(this.selectedDay2));
 
-        for (var i = 0; i < 9; i++) {
+        for (let i = 0; i < 9; i++) {
             let currDate: Date = new Date();
             currDate.setDate(currDate.getDate() + i);
             currDate.setHours(0, 0, 0, 0);

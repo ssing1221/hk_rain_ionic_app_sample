@@ -4,6 +4,8 @@ export let OT_GV = new OpaqueToken('gv');
 
 export interface IGV {
     isTestingAdmob: boolean;
+    ADMOB_MAX_NUMBER: number;
+    admobCount: number;
     gLangInd: string;
     monthMap: {};
     weekDayEnMap: {};
@@ -54,13 +56,18 @@ export interface IGV {
 
     AD_MOB_ID_BANNER: string;
     AD_MOB_ID_INTER: string;
+    AD_MOB_ID_INTER_VIDEO: string;
+    AD_MOB_ID_VIDEO: string;
 }
 
 export const IGV: IGV = {
 
-    // Change it to true when production
+    // Change Admob to false when production
     isTestingAdmob: false,
-    // Change it to true when production
+    // Change Admob to false when production
+
+    ADMOB_MAX_NUMBER: 5,
+    admobCount: 5,
     
     gLangInd: 'zh',
     monthMap: {
@@ -122,6 +129,8 @@ export const IGV: IGV = {
     NO_NETWORK_CONNECTION_ZH: '沒有網路...',
 
     AD_MOB_ID_BANNER: '',
-    AD_MOB_ID_INTER: ''
+    AD_MOB_ID_INTER: '',
+    AD_MOB_ID_INTER_VIDEO: '',
+    AD_MOB_ID_VIDEO: ''
 };
 

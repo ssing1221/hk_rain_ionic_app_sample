@@ -1,16 +1,20 @@
 {
   "MAIN": {
-    "HK_RAIN": "香港雨"
+    "HK_RAIN": "香港雨",
+    "OK": "好",
+    "CANCEL": "取消"
   },
   "MENU": {
     "HOME": "首頁",
     "ENG": "ENG",
     "ZH": "繁",
     "9DAY_WEATHER_FORECAST": "九天天氣預報",
+    "WEEKLY_PREDICT": "每週預測",
     "SETTING": "設定",
     "EMPTY": "Empty",
     "ABOUT": "關於",
-    "FEEDBACK": "回饋"
+    "FEEDBACK": "回饋",
+    "SUPPORT": "支持"
   },
   "AB": {
     "P1": "籌備下周以至下年的戶外活動，想知道當天下雨的機率嗎？",
@@ -23,6 +27,7 @@
     "YEAR": "年",
     "MONTH": "月",
     "DAY": "日",
+    "TODAY_WEATHER": "今日天氣",
     "GO": "去",
     "BACK": "返回",
     "MORE": "更多",
@@ -53,6 +58,11 @@
     "GO": "去",
     "BACK": "返回"
   },
+  "WP": {
+    "WEEKLY_PREDICT": "每週預測",
+    "WEEKLY": "每週",
+    "RAIN_PERCENTAGE": "下雨率 %"
+  },
   "SET": {
     "YEARS_OF_DATA_TO_USE": "利用數據的年數",
     "RESET": "重設"
@@ -62,5 +72,15 @@
     "EMAIL": "Email (可不填)",
     "COMMENT": "建議",
     "SUBMIT": "遞交"
+  },  
+   "SUPPORT": {
+    "THANKS": "多謝！",
+    "CHECK_UPDATE_IN_APP_STORE": "在 APP Store 檢查更新", 
+    "CHECK_UPDATE_IN_GOOGLE_PLAY": "在 Google Play 檢查更新", 
+    "PLEASE_RATE": "請給予評價和意見",
+    "ALSO_YOU_CAN_SUPPORT_ME_BY": "另外，你也可以透過以下方法去支持我",
+    "WATCH_NORMAL_ADV": "看一則普通廣告",
+    "CLICK_THE_ADV_IF_YOU_ARE_INTERETED": "(可點擊有興趣的廣告！)",
+    "WATCH_VIDEO_ADV": "看一則視頻廣告"
   }
 }
